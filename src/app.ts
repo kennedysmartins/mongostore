@@ -1,6 +1,11 @@
 import express from "express"
 import bodyParser from "body-parser"
 import mongoose from "mongoose"
+import productRoutes from "./routes/product.routes"
+// import cartProductRoutes from "./routes/cartProduct.routes"
+import categoryRoutes from "./routes/category.routes"
+// import userRoutes from "./routes/user.routes"
+// import cartRoutes from "./routes/cart.routes"
 require("dotenv").config()
 
 const app = express()
@@ -19,6 +24,20 @@ mongoose.connection.on("error", (err) => {
   console.error("Erro na conexão com o MongoDB:", err)
 })
 
+// Product Routes
+app.use("/api/products", productRoutes)
+
+// Categories Routes
+app.use("/api/categories", categoryRoutes)
+
+// Users Routes
+// app.use("/api/users", userRoutes)
+
+// Carts Routes
+// app.use("/api/carts", cartRoutes)
+
+// CartProducts Routes
+// app.use("/api/cartProducts", cartProductRoutes)
 
 app.use(bodyParser.json())
 app.listen(PORT, () => {
